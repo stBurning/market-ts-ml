@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "market-ts-ml"
+version = "0.1.0"
+description = "Loading, preprocessing and forecasting stock market time series data"
+authors = ["Konstantin Ustinov <stburnv@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2.2"
+python-binance = "^1.0.19"
+pybit = "^5.8.0"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
