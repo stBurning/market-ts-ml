@@ -3,6 +3,8 @@
 *.iml
 *.png
 *.lock
+*.cbm
+*.pkl
 catboost_info/
 notebooks/optuna-storage/
 out
