@@ -1,6 +1,10 @@
 .idea
 *.csv
 *.iml
+*.png
+*.lock
+catboost_info/
+notebooks/optuna-storage/
 out
 gen
 __pycache__/
