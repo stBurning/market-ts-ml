@@ -2,7 +2,7 @@ import logging
 import os
 import time
 from datetime import datetime
-
+import g4f
 from aiogram.client.default import DefaultBotProperties
 from dotenv import load_dotenv
 
@@ -18,6 +18,19 @@ logging.basicConfig(
     format="%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s",
     datefmt='%H:%M:%S',
 )
+
+def ask_gpt(promt) -> str:
+    response = g4f.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": promt}],
+        stream=True,
+    )
+
+    ans_message = ''
+    for message in response:
+        ans_message += message
+
+    return ans_message
 
 formatter = logging.Formatter(fmt="%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s", )
 
@@ -71,10 +84,12 @@ class MessageBot:
     @dp.message(F.text)
     async def answer(message: Message):
         if message.from_user.id == ADMIN_ID:
-            await message.answer(f"Привет, <b>{message.from_user.full_name}</b>", parse_mode=ParseMode.HTML)
-            # TODO: ответ авторизованному пользователю
+            question = message.text
+            answer = ask_gpt(question)
+            await message.answer(answer, parse_mode=ParseMode.HTML)
+            
         else:
-            await message.answer(f"Привет, <b>{message.from_user.full_name}</b>", parse_mode=ParseMode.HTML)
+            await message.answer(f"Привет, <b>{message.from_user.full_name}</b>! К сожалению, доступ для вас запрещен.", parse_mode=ParseMode.HTML)
 
 
 async def at_minute_start(cb):

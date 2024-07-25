@@ -25,6 +25,9 @@ shap = "^0.46.0"
 catboost = "^1.2.5"
 optuna-dashboard = "^0.15.1"
 aiogram = "^3.10.0"
+g4f = "^0.3.2.2"
+curl-cffi = "^0.7.1"
+torch = "^2.4.0"
 
 
 [tool.poetry.group.dev.dependencies]

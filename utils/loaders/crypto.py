@@ -1,10 +1,8 @@
 import logging
-import os
 from datetime import datetime
 from typing import Literal, Optional
 
 import pandas as pd
-from dotenv.main import load_dotenv
 from pybit.exceptions import InvalidRequestError
 from pybit.unified_trading import HTTP
 from binance.client import Client

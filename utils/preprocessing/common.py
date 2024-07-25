@@ -22,8 +22,12 @@ class QuantileImputer(BaseEstimator, TransformerMixin):
         self.low_quantile = low_quantile
         self.high_quantile = high_quantile
         self.lows, self.highs = None, None
+        self.lagg_names = []
         self.subset = subset
         self.how = how
+    
+    def get_feature_names_out(self, *args, **params):
+        return self.subset
         
 
     def fit(self, X: pd.DataFrame, y=None):
@@ -60,13 +64,13 @@ class LaggBuilder(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        lagg_names = []
+        self.lagg_names = []
         X = X.copy(deep=True)
         for lag in self.lags:
             lags = X[self.subset].shift(lag)
             lags.columns = [col + f"_T-{lag}" for col in self.subset]
             X = pd.concat([X, lags], axis=1)
             for name in [col + f"_T-{lag}" for col in self.subset]:
-                lagg_names.append(name)
+                self.lagg_names.append(name)
         self.X = X
         return X
