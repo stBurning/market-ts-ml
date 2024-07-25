@@ -5,8 +5,8 @@
 - [Модуль предобработки данных](utils/preprocessing/)
 - [Классы моделей](utils/models/)
 
-- [Сервисы для использования моделей](utils/services/)
-  - [Загрузка данных](utils/services/load_service/)
-  - [Запуск модели](utils/services/model_service/)
-  - [Отправка результатов в Telegram](utils/services/message_service/)
+- [Сервисы для использования моделей](services/)
+  - [Загрузка данных](services/load_service/)
+  - [Запуск модели](services/model_service/)
+  - [Отправка результатов в Telegram](services/message_service/)
 
